@@ -1,36 +1,26 @@
-# Hardware & Display Module - School Bell System
+# RTC & Schedule Module - School Bell System
 
 ## My Role
-Hardware initialization, display driver, LED indicators, and buzzer control.
+Time management, schedule storage, bell event logic, and EEPROM persistence.
 
 ## Files I Created
-- `src/hardware/display.cpp/h` - ST7735S screen management
-- `src/hardware/leds.cpp/h` - RGB LED control (Green/Red/Blue/White)
-- `src/hardware/buzzer.cpp/h` - Tone generation for bell ringing
-- `include/config.h` - Pin definitions for all components
+- `src/core/rtc_manager.cpp/h` - DS3231 RTC integration
+- `src/core/schedule.cpp/h` - Bell schedule CRUD operations
+- `src/core/storage.cpp/h` - EEPROM save/load with magic number
+- `include/structures.h` - Shared data structures (BellEvent)
 
-## Pin Connections
-| Component | Pins |
-|-----------|------|
-| TFT Display | CS:5, RST:16, DC:17, MOSI:23, SCLK:18 |
-| LEDs | Green:26, Red:27, Blue:14, White:12 |
-| Buzzer | GPIO 25 |
+## Features Implemented
+- RTC initialization with lost power detection
+- Auto-sync time from compiler (`__DATE__`, `__TIME__`)
+- Schedule: Add, Delete, List, Find next bell
+- EEPROM persistence (20 events max)
+- Default school schedule (6 events)
 
-## Functions Implemented
-- `initDisplay()` - Boot screen and display setup
-- `updateDisplay()` - Real-time clock, date, WiFi status
-- `ringBell(duration)` - Buzzer with LED flash pattern
-- `heartbeatLED()` - System alive indicator (blinks every 5 sec)
-
-## Testing
-✅ Display shows time and schedule info  
-✅ LEDs respond to boot/ringing/ready states  
-✅ Buzzer produces 2KHz tone during bell events  
-
-## Dependencies
-- Adafruit_GFX
-- Adafruit_ST7735
-- SPI library
-
-## Merge Status
-⏳ Waiting for Person 2 (RTC module) and Person 3 (Web module)
+## Schedule Structure
+```cpp
+struct BellEvent {
+  uint8_t hour;    // 0-23
+  uint8_t minute;  // 0-59
+  bool active;     // enabled/disabled
+  uint8_t duration; // ringing seconds (1-10)
+};
