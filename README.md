@@ -1,7 +1,7 @@
 
 ---
 
-### 👤 **Person 3: Web Server & API**
+### 👤 **Sarah: Web Server & API**
 **Branch:** `feature/web-server`
 
 ```markdown
