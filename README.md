@@ -20,7 +20,7 @@ An ESP32-based automatic bell system for schools with real-time clock, schedule 
 
 This automated bell system replaces traditional mechanical bells with an intelligent electronic system that:
 - Rings bells automatically based on pre-set schedule
-- Shows real-time clock and next bell time on 1.8" color display
+- Shows real-time clock and next bell time on 0.96" color display
 - Provides web interface for remote management
 - Stores schedule in non-volatile memory (survives power loss)
 - Uses LED indicators for system status
