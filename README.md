@@ -32,5 +32,4 @@ Hardware initialization, display driver, LED indicators, and buzzer control.
 - Adafruit_ST7735
 - SPI library
 
-## Merge Status
-⏳ Waiting for Person 2 (RTC module) and Person 3 (Web module)
+
